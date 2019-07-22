@@ -8,16 +8,20 @@ present mean temperatures warmer and cooler than Earth's.
 
 ## Running with gradle
 To run the single process program with gradle:
+*_This uses the PlanetTemperatureAnalyzer main class._)
 ```shell
 ./gradlew runSingleProcess
 ```
 
+
 To run the multi process program with gradle:
+(_This uses the PlanetTemperatureAnalyzerParallel main class._)
 ```shell
 ./gradlew runMultiProcess
 ```
-NOTE: On windows you should use `gradlew.bat`
 
+
+NOTE: On windows you should use `gradlew.bat`
 
 ## Data Files
 
@@ -31,3 +35,6 @@ The following files are used:
   
   These two files each contain half of the previous file.
   
+These are both based on open data exports, but have been augmented for this exercise.
+
+You'll also find cool-planets.csv and hot-planets.csv which you can use to slice your data further.
