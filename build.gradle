@@ -11,6 +11,21 @@ repositories {
     mavenCentral()
 }
 
+task(runSingleProcess, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.openclassrooms.concurrency.planetbrain.app.PlanetTemperatureAnalyzer'
+    classpath = sourceSets.main.runtimeClasspath
+    args 'all-planets.csv'
+}
+
+task(runMultiProcess, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.openclassrooms.concurrency.planetbrain.app.PlanetTemperatureAnalyzerParallel'
+    classpath = sourceSets.main.runtimeClasspath
+    args = ["last-55820.csv", "first-55820.csv"]
+}
+
+
+defaultTasks 'runSingleProcess'
+
 test {
     useJUnitPlatform()
 }

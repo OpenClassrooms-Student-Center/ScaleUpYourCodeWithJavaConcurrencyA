@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class PlanetTemperatureAnalyzerParallel {
 
     private static Logger LOGGER = Logger.getLogger(PlanetTemperatureAnalyzerParallel.class.getName());
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
 
         // Create a Process builder and make it look like this process
@@ -27,7 +27,7 @@ public class PlanetTemperatureAnalyzerParallel {
 
         // Start a process with each fileName asynchronously
         List<Process> processes = Arrays.asList(args).stream().map(csvFile -> {
-
+            LOGGER.info("About to analyse " + csvFile);
             builder.command("java", "-cp", classPathString, PlanetTemperatureAnalyzer.class.getName(), csvFile);
             Process process;
             try {
@@ -41,6 +41,7 @@ public class PlanetTemperatureAnalyzerParallel {
             return process;
         }).collect(Collectors.toList());
 
+        // Wait for processes to complete
         processes.forEach(process -> {
             try {
                 LOGGER.info("Waiting for process to complete. PID[" + process.pid() + "]");
