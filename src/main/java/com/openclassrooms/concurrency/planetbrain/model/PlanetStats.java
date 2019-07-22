@@ -4,19 +4,19 @@ import java.math.BigDecimal;
 
 public class PlanetStats {
 
-    private BigDecimal coolAverage;
-    private BigDecimal hotAverage;
+    private BigDecimal coolAverageInKelvin;
+    private BigDecimal hotAverageInKelvin;
 
-    public PlanetStats(BigDecimal coolAverage, BigDecimal hotAverage) {
-        this.coolAverage = coolAverage;
-        this.hotAverage = hotAverage;
+    public PlanetStats(BigDecimal coolAverageInKelvin, BigDecimal hotAverage) {
+        this.coolAverageInKelvin = coolAverageInKelvin;
+        this.hotAverageInKelvin = hotAverage;
     }
 
-    public BigDecimal getCoolAverage() {
-        return hotAverage;
+    public BigDecimal getCoolAverageInKelvin() {
+        return coolAverageInKelvin;
     }
 
-    public BigDecimal getHotAverage() {
-        return hotAverage;
+    public BigDecimal getHotAverageInKelvin() {
+        return hotAverageInKelvin;
     }
 }
