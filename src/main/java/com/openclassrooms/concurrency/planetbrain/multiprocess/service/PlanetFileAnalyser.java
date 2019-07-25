@@ -1,7 +1,6 @@
-package com.openclassrooms.concurrency.planetbrain.service;
+package com.openclassrooms.concurrency.planetbrain.multiprocess.service;
 
-import com.openclassrooms.concurrency.planetbrain.model.KeplerCsvFields;
-import com.openclassrooms.concurrency.planetbrain.model.PlanetStats;
+import com.openclassrooms.concurrency.planetbrain.multiprocess.model.KeplerCsvFields;
 
 import java.io.IOException;
 import java.math.BigDecimal;

@@ -1,4 +1,4 @@
-package com.openclassrooms.concurrency.planetbrain.model;
+package com.openclassrooms.concurrency.planetbrain.multiprocess.model;
 
 import java.math.BigDecimal;
 

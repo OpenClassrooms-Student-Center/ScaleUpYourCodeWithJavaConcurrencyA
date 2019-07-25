@@ -1,7 +1,7 @@
-package com.openclassrooms.concurrency.planetbrain.app;
+package com.openclassrooms.concurrency.planetbrain.multiprocess.app;
 
-import com.openclassrooms.concurrency.planetbrain.model.PlanetStats;
-import com.openclassrooms.concurrency.planetbrain.service.PlanetFileAnalyser;
+import com.openclassrooms.concurrency.planetbrain.multiprocess.model.PlanetStats;
+import com.openclassrooms.concurrency.planetbrain.multiprocess.service.PlanetFileAnalyser;
 
 import java.math.BigDecimal;
 import java.net.URI;

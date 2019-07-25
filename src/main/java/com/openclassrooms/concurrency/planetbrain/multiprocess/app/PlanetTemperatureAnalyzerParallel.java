@@ -1,4 +1,4 @@
-package com.openclassrooms.concurrency.planetbrain.app;
+package com.openclassrooms.concurrency.planetbrain.multiprocess.app;
 
 import java.io.IOException;
 import java.util.Arrays;
