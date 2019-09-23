@@ -1,4 +1,4 @@
-package com.openclassrooms.concurrency.planetbrain.multiprocess.model;
+package com.openclassrooms.concurrency.planetbrain.model;
 
 public class KeplerCsvFields {
     public static String COMMENT_CHARACTER = "#";
