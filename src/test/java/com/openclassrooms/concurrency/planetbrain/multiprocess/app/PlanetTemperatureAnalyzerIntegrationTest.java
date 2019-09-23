@@ -1,8 +1,7 @@
 package com.openclassrooms.concurrency.planetbrain.multiprocess.app;
 
-import com.openclassrooms.concurrency.planetbrain.multiprocess.app.PlanetTemperatureAnalyzer;
 import com.openclassrooms.concurrency.planetbrain.multiprocess.model.PlanetStats;
-import com.openclassrooms.concurrency.planetbrain.multiprocess.service.PlanetFileAnalyser;
+import com.openclassrooms.concurrency.planetbrain.multiprocess.service.PlanetFileSequentialAnalyser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +13,7 @@ import static org.hamcrest.core.AllOf.allOf;
 
 @DisplayName("Given that the PlanetBrain app is running")
 public class PlanetTemperatureAnalyzerIntegrationTest {
-    PlanetFileAnalyser fileAnalyser = new PlanetFileAnalyser();
+    PlanetFileSequentialAnalyser fileAnalyser = new PlanetFileSequentialAnalyser();
     // This is the class which does all the work
     PlanetTemperatureAnalyzer classUnderTest = new PlanetTemperatureAnalyzer(fileAnalyser);
 

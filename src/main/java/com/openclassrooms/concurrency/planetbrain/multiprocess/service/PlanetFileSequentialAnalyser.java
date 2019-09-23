@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
 
-public class PlanetFileAnalyser {
+public class PlanetFileSequentialAnalyser {
 
     public BigDecimal calculateAveragesFor(URI fileURI, Double maxTemperature) throws IOException {
         Path path = Paths.get(fileURI);

@@ -1,7 +1,7 @@
 package com.openclassrooms.concurrency.planetbrain.multiprocess.app;
 
 import com.openclassrooms.concurrency.planetbrain.multiprocess.model.PlanetStats;
-import com.openclassrooms.concurrency.planetbrain.multiprocess.service.PlanetFileAnalyser;
+import com.openclassrooms.concurrency.planetbrain.multiprocess.service.PlanetFileSequentialAnalyser;
 
 import java.math.BigDecimal;
 import java.net.URI;
@@ -14,9 +14,9 @@ public class PlanetTemperatureAnalyzer {
     private final static Logger LOGGER = Logger.getLogger(PlanetTemperatureAnalyzer.class.getName());
     private final static Double HABITABLE_EARTH_TEMPERATURE_KELVIN = 288.0;
 
-    private PlanetFileAnalyser planetFileAnalyser;
+    private PlanetFileSequentialAnalyser planetFileAnalyser;
 
-    public PlanetTemperatureAnalyzer(PlanetFileAnalyser planetFileAnalyser) {
+    public PlanetTemperatureAnalyzer(PlanetFileSequentialAnalyser planetFileAnalyser) {
         this.planetFileAnalyser = planetFileAnalyser;
     }
 
@@ -29,7 +29,7 @@ public class PlanetTemperatureAnalyzer {
         Instant startTime = Instant.now();
 
         // We do this to ensure constructor injection
-        PlanetFileAnalyser planetFileAnalyser = new PlanetFileAnalyser();
+        PlanetFileSequentialAnalyser planetFileAnalyser = new PlanetFileSequentialAnalyser();
         PlanetTemperatureAnalyzer analyzerApp = new PlanetTemperatureAnalyzer(planetFileAnalyser);
 
         String file = args[0];
