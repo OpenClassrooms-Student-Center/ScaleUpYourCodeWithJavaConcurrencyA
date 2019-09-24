@@ -6,11 +6,17 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+/**
+ * This is the main class for analysing Kepler temperatures
+ * using Java's ProcessBuilder to perform parallel multi-processing.
+ *
+ * See the associated course for a deeper explanation of the differences
+ * between Parallelism and Concurrency.
+ */
 public class PlanetTemperatureAnalyzerParallel {
 
     private static Logger LOGGER = Logger.getLogger(PlanetTemperatureAnalyzerParallel.class.getName());
     public static void main(String[] args) throws Exception {
-
 
         // Create a Process builder and make it look like this process
         ProcessBuilder builder = new ProcessBuilder();
@@ -39,6 +45,8 @@ public class PlanetTemperatureAnalyzerParallel {
             }
             LOGGER.info("Completed child process");
             return process;
+
+            // Add each process into a list
         }).collect(Collectors.toList());
 
         // Wait for processes to complete

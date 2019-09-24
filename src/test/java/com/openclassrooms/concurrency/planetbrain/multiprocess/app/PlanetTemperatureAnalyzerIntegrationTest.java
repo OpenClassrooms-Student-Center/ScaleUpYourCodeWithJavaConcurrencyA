@@ -1,6 +1,6 @@
 package com.openclassrooms.concurrency.planetbrain.multiprocess.app;
 
-import com.openclassrooms.concurrency.planetbrain.multiprocess.model.PlanetStats;
+import com.openclassrooms.concurrency.planetbrain.model.SplitDataPlanetStats;
 import com.openclassrooms.concurrency.planetbrain.multiprocess.service.PlanetFileSequentialAnalyser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ public class PlanetTemperatureAnalyzerIntegrationTest {
         // Read file
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         URI fileUri = loader.getResource(fileName).toURI();
-        PlanetStats result = classUnderTest.analyzeFile(fileName);
+        SplitDataPlanetStats result = classUnderTest.analyzeFile(fileName);
 
         assertThat(result, allOf(
                 hasProperty("coolAverageInKelvin"),

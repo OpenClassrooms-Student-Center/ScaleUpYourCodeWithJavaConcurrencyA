@@ -2,12 +2,12 @@ package com.openclassrooms.concurrency.planetbrain.model;
 
 import java.math.BigDecimal;
 
-public class PlanetStats {
+public class SplitDataPlanetStats {
 
     private BigDecimal coolAverageInKelvin;
     private BigDecimal hotAverageInKelvin;
 
-    public PlanetStats(BigDecimal coolAverageInKelvin, BigDecimal hotAverage) {
+    public SplitDataPlanetStats(BigDecimal coolAverageInKelvin, BigDecimal hotAverage) {
         this.coolAverageInKelvin = coolAverageInKelvin;
         this.hotAverageInKelvin = hotAverage;
     }

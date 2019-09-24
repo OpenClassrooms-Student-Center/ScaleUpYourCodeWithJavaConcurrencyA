@@ -1,6 +1,6 @@
 package com.openclassrooms.concurrency.planetbrain.multiprocess.app;
 
-import com.openclassrooms.concurrency.planetbrain.multiprocess.model.PlanetStats;
+import com.openclassrooms.concurrency.planetbrain.model.SplitDataPlanetStats;
 import com.openclassrooms.concurrency.planetbrain.multiprocess.service.PlanetFileSequentialAnalyser;
 
 import java.math.BigDecimal;
@@ -10,6 +10,10 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.logging.Logger;
 
+/**
+ * Takes a kepler file and calculates the average temperature for hot planets
+ * and the average temperature for cool planets.
+ */
 public class PlanetTemperatureAnalyzer {
     private final static Logger LOGGER = Logger.getLogger(PlanetTemperatureAnalyzer.class.getName());
     private final static Double HABITABLE_EARTH_TEMPERATURE_KELVIN = 288.0;
@@ -25,17 +29,18 @@ public class PlanetTemperatureAnalyzer {
             throw new RuntimeException("Please provide the name of at least one kepler file");
         }
 
-        // Measure start time
+        String file = args[0];
+
+        // First, measure start time
         Instant startTime = Instant.now();
 
         // We do this to ensure constructor injection
         PlanetFileSequentialAnalyser planetFileAnalyser = new PlanetFileSequentialAnalyser();
         PlanetTemperatureAnalyzer analyzerApp = new PlanetTemperatureAnalyzer(planetFileAnalyser);
 
-        String file = args[0];
         // Read the current file and calculate the average temperature warmer than Earth
         // and the average temperature cooler than Earth.
-        PlanetStats results = analyzerApp.analyzeFile(file);
+        SplitDataPlanetStats results = analyzerApp.analyzeFile(file);
         Instant endTime = Instant.now();
         Duration duration = Duration.between(startTime, endTime);
 
@@ -44,7 +49,7 @@ public class PlanetTemperatureAnalyzer {
         LOGGER.info("File["+file+"] Processing took: " + duration.getNano() + " nano seconds");
     }
 
-    public PlanetStats analyzeFile(String file) throws Exception {
+    public SplitDataPlanetStats analyzeFile(String file) throws Exception {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         URL resource = loader.getResource(file);
         if (resource == null) {
@@ -58,7 +63,7 @@ public class PlanetTemperatureAnalyzer {
         BigDecimal hotMeanTemperature = planetFileAnalyser.calculateAveragesFor(
                     fileURI, Double.MAX_VALUE);
 
-        return new PlanetStats(coolMeanTemperature, hotMeanTemperature);
+        return new SplitDataPlanetStats(coolMeanTemperature, hotMeanTemperature);
     }
 
 
