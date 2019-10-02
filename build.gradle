@@ -5,10 +5,15 @@ plugins {
 group 'com.openclassrooms.concurrency'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.11
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+}
+
+task(runBenchmarks, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.openclassrooms.concurrency.planetbrain.BenchmarkRunner'
+    classpath = sourceSets.test.runtimeClasspath
 }
 
 task(runSingleProcess, dependsOn: 'classes', type: JavaExec) {
@@ -37,6 +42,9 @@ test {
     useJUnitPlatform()
 }
 dependencies {
+    testAnnotationProcessor 'org.openjdk.jmh:jmh-generator-annprocess:1.21'
+    testImplementation 'org.openjdk.jmh:jmh-core:1.21'
+    //testImplementation 'org.openjdk.jmh:jmh-generator-annprocess:1.21'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.1'
     testImplementation 'org.hamcrest:hamcrest:2.1'
