@@ -2,12 +2,15 @@ package com.openclassrooms.concurrency.planetbrain;
 
 import com.openclassrooms.concurrency.planetbrain.multiprocess.app.PlanetTemperatureAnalyzer;
 import com.openclassrooms.concurrency.planetbrain.multiprocess.app.PlanetTemperatureAnalyzerParallel;
+import com.openclassrooms.concurrency.planetbrain.parallelstreams.app.PlanetAnalyzerUsingParallelStreams;
 import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.Measurement;
 import org.openjdk.jmh.runner.RunnerException;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
-
+@Measurement(time=10, timeUnit = TimeUnit.SECONDS)
 public class BenchmarkRunner {
 
     // Benchmarking fixtures
@@ -31,4 +34,8 @@ public class BenchmarkRunner {
         PlanetTemperatureAnalyzerParallel.main(SPLIT_PLANETS_FILES);
     }
 
+    @Benchmark
+    public void benchmarkParallelStream() throws Exception {
+        PlanetAnalyzerUsingParallelStreams.main(SINGLE_INPUT_FILE);
+    }
 }
