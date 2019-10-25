@@ -46,17 +46,27 @@ public class FutureBasedPlanetAnalyzerApp {
         Double valueOfFileOneCount = futureOfCountOne.get();
         Double valueOfFileTwoCount = futureOfCountTwo.get();
 
+        // Your solution, should cover the following behaviour:
+        // Ideally you will refactor this to have smaller methods and less logic
+        // in the main class.
+        Future<Double> futureAverage = executorService.submit(
+                () -> {
+                    // 5. Add sums
+                    Double sumOfTemperatures = valueOfFileOneSum + valueOfFileTwoSum;
+
+                    // 6. Add counts
+                    Double countOfTemperatures = valueOfFileOneCount + valueOfFileTwoCount;
+
+                    // 7. Calculate average
+                    return sumOfTemperatures / countOfTemperatures;
+                });
+
         // Shutdown Executor Service since we're done with it
         executorService.shutdown();
 
-        // 6. Add sums
-        Double sumOfTemperatures = valueOfFileOneSum + valueOfFileTwoSum;
-
-        // 7. Add counts
-        Double countOfTemperatures = valueOfFileOneCount + valueOfFileTwoCount;
-
-        // 8. Calculate average
-        return sumOfTemperatures/countOfTemperatures;
+        // Is there value in having used a future here.
+        // Remember, just because we can, it does not meant hat we should!
+        return futureAverage.get();
     }
 
     private static Path getCSVPath(String file) throws URISyntaxException {
