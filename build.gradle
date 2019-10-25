@@ -40,6 +40,12 @@ task(runRawThreads, dependsOn: 'classes', type: JavaExec) {
     args = ["last-55820.csv", "first-55820.csv"]
 }
 
+task(runFutures, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.openclassrooms.concurrency.planetbrain.futures.app.FutureBasedPlanetAnalyzerApp'
+    classpath = sourceSets.main.runtimeClasspath
+    args = ["last-55820.csv", "first-55820.csv"]
+}
+
 defaultTasks 'runSingleProcess'
 
 test {

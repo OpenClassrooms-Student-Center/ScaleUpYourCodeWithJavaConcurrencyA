@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 @Measurement(time=500, timeUnit = TimeUnit.MILLISECONDS)
 @Warmup(time = 500, timeUnit = TimeUnit.MILLISECONDS)
-@Fork(4)
+@Fork(5)
 public class BenchmarkRunner {
 
     // Benchmarking fixtures
@@ -45,6 +45,11 @@ public class BenchmarkRunner {
 
     @Benchmark
     public void benchmarkRawThreadsWithFutureTasks() throws Exception {
+        ThreadBasedPlanetAnalyzerApp.main(SPLIT_PLANETS_FILES);
+    }
+
+    @Benchmark
+    public void benchmarkFuturesWithExecutorService() throws Exception {
         ThreadBasedPlanetAnalyzerApp.main(SPLIT_PLANETS_FILES);
     }
 }
