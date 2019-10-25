@@ -46,13 +46,16 @@ public class FutureBasedPlanetAnalyzerApp {
         Double valueOfFileOneCount = futureOfCountOne.get();
         Double valueOfFileTwoCount = futureOfCountTwo.get();
 
-        // 5. Add sums
+        // Shutdown Executor Service since we're done with it
+        executorService.shutdown();
+
+        // 6. Add sums
         Double sumOfTemperatures = valueOfFileOneSum + valueOfFileTwoSum;
 
-        // 6. Add counts
+        // 7. Add counts
         Double countOfTemperatures = valueOfFileOneCount + valueOfFileTwoCount;
 
-        // 7. Calculate average
+        // 8. Calculate average
         return sumOfTemperatures/countOfTemperatures;
     }
 
