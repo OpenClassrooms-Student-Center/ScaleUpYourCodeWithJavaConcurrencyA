@@ -34,7 +34,11 @@ task(runParallelStreams, dependsOn: 'classes', type: JavaExec) {
     args = ["all-planets.csv"]
 }
 
-
+task(runRawThreads, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.openclassrooms.concurrency.planetbrain.threads.app.ThreadBasedPlanetAnalyzerApp'
+    classpath = sourceSets.main.runtimeClasspath
+    args = ["last-55820.csv", "first-55820.csv"]
+}
 
 defaultTasks 'runSingleProcess'
 
