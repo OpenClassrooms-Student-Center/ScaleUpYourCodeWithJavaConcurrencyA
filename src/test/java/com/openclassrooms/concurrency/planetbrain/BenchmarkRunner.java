@@ -1,5 +1,6 @@
 package com.openclassrooms.concurrency.planetbrain;
 
+import com.openclassrooms.concurrency.planetbrain.futures.app.FutureBasedPlanetAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.multiprocess.app.PlanetTemperatureAnalyzer;
 import com.openclassrooms.concurrency.planetbrain.multiprocess.app.PlanetTemperatureAnalyzerParallel;
 import com.openclassrooms.concurrency.planetbrain.parallelstreams.app.PlanetAnalyzerUsingParallelStreams;
@@ -50,6 +51,6 @@ public class BenchmarkRunner {
 
     @Benchmark
     public void benchmarkFuturesWithExecutorService() throws Exception {
-        ThreadBasedPlanetAnalyzerApp.main(SPLIT_PLANETS_FILES);
+        FutureBasedPlanetAnalyzerApp.main(SPLIT_PLANETS_FILES);
     }
 }
