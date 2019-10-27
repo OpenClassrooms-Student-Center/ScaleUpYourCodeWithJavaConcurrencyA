@@ -46,6 +46,12 @@ task(runFutures, dependsOn: 'classes', type: JavaExec) {
     args = ["last-55820.csv", "first-55820.csv"]
 }
 
+task(runAtomics, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.openclassrooms.concurrency.planetbrain.atomic.app.AtomicBasedPlanetAnalyzerApp'
+    classpath = sourceSets.main.runtimeClasspath
+    args = ["last-55820.csv", "first-55820.csv"]
+}
+
 defaultTasks 'runSingleProcess'
 
 test {

@@ -1,5 +1,7 @@
 package com.openclassrooms.concurrency.planetbrain;
 
+import com.openclassrooms.concurrency.planetbrain.atomic.app.AtomicBasedPlanetAnalyzerApp;
+import com.openclassrooms.concurrency.planetbrain.atomic.service.AtomicBasedFileAnalyzer;
 import com.openclassrooms.concurrency.planetbrain.futures.app.FutureBasedPlanetAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.multiprocess.app.PlanetTemperatureAnalyzer;
 import com.openclassrooms.concurrency.planetbrain.multiprocess.app.PlanetTemperatureAnalyzerParallel;
@@ -16,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 @Measurement(time=500, timeUnit = TimeUnit.MILLISECONDS)
 @Warmup(time = 500, timeUnit = TimeUnit.MILLISECONDS)
-@Fork(5)
+@Fork(6)
 public class BenchmarkRunner {
 
     // Benchmarking fixtures
@@ -53,4 +55,10 @@ public class BenchmarkRunner {
     public void benchmarkFuturesWithExecutorService() throws Exception {
         FutureBasedPlanetAnalyzerApp.main(SPLIT_PLANETS_FILES);
     }
+
+    @Benchmark
+    public void benchmarkAtomicsWithFutures() throws Exception {
+        AtomicBasedPlanetAnalyzerApp.main(SPLIT_PLANETS_FILES);
+    }
+
 }
