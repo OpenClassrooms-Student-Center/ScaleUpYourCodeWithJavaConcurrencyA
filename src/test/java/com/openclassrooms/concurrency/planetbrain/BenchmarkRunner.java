@@ -1,11 +1,11 @@
 package com.openclassrooms.concurrency.planetbrain;
 
 import com.openclassrooms.concurrency.planetbrain.atomic.app.AtomicBasedPlanetAnalyzerApp;
-import com.openclassrooms.concurrency.planetbrain.atomic.service.AtomicBasedFileAnalyzer;
 import com.openclassrooms.concurrency.planetbrain.futures.app.FutureBasedPlanetAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.multiprocess.app.PlanetTemperatureAnalyzer;
 import com.openclassrooms.concurrency.planetbrain.multiprocess.app.PlanetTemperatureAnalyzerParallel;
 import com.openclassrooms.concurrency.planetbrain.parallelstreams.app.PlanetAnalyzerUsingParallelStreams;
+import com.openclassrooms.concurrency.planetbrain.reentrantlocks.app.ReentrantLockBasedPlanetAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.threads.app.ThreadBasedPlanetAnalyzerApp;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Fork;
@@ -16,9 +16,9 @@ import org.openjdk.jmh.runner.RunnerException;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-@Measurement(time=500, timeUnit = TimeUnit.MILLISECONDS)
-@Warmup(time = 500, timeUnit = TimeUnit.MILLISECONDS)
-@Fork(6)
+@Measurement(time=1500, timeUnit = TimeUnit.MILLISECONDS)
+@Warmup(time = 1500, timeUnit = TimeUnit.MILLISECONDS)
+@Fork(3)
 public class BenchmarkRunner {
 
     // Benchmarking fixtures
@@ -61,4 +61,8 @@ public class BenchmarkRunner {
         AtomicBasedPlanetAnalyzerApp.main(SPLIT_PLANETS_FILES);
     }
 
+    @Benchmark
+    public void benchmarkFuturesWithReentrantLocks() throws Exception {
+        ReentrantLockBasedPlanetAnalyzerApp.main(SPLIT_PLANETS_FILES);
+    }
 }

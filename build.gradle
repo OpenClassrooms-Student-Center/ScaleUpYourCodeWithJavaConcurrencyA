@@ -52,6 +52,11 @@ task(runAtomics, dependsOn: 'classes', type: JavaExec) {
     args = ["last-55820.csv", "first-55820.csv"]
 }
 
+task(runReentrantLocks, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.openclassrooms.concurrency.planetbrain.reentrantlocks.app.ReentrantLockBasedPlanetAnalyzerApp'
+    classpath = sourceSets.main.runtimeClasspath
+    args = ["last-55820.csv", "first-55820.csv"]
+}
 defaultTasks 'runSingleProcess'
 
 test {
@@ -60,8 +65,8 @@ test {
 dependencies {
     testAnnotationProcessor 'org.openjdk.jmh:jmh-generator-annprocess:1.21'
     testImplementation 'org.openjdk.jmh:jmh-core:1.21'
-    //testImplementation 'org.openjdk.jmh:jmh-generator-annprocess:1.21'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.1'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.1.0'
     testImplementation 'org.hamcrest:hamcrest:2.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.1'
 }
