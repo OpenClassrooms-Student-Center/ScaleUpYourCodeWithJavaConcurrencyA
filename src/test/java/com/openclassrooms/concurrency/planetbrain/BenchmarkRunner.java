@@ -6,6 +6,7 @@ import com.openclassrooms.concurrency.planetbrain.multiprocess.app.PlanetTempera
 import com.openclassrooms.concurrency.planetbrain.multiprocess.app.PlanetTemperatureAnalyzerParallel;
 import com.openclassrooms.concurrency.planetbrain.parallelstreams.app.PlanetAnalyzerUsingParallelStreams;
 import com.openclassrooms.concurrency.planetbrain.reentrantlocks.app.ReentrantLockBasedPlanetAnalyzerApp;
+import com.openclassrooms.concurrency.planetbrain.semaphores.app.SemaphorePlanetAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.threads.app.ThreadBasedPlanetAnalyzerApp;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Fork;
@@ -18,12 +19,13 @@ import java.util.concurrent.TimeUnit;
 
 @Measurement(time=1500, timeUnit = TimeUnit.MILLISECONDS)
 @Warmup(time = 1500, timeUnit = TimeUnit.MILLISECONDS)
-@Fork(3)
+@Fork(2)
 public class BenchmarkRunner {
 
     // Benchmarking fixtures
     private static final String[] SINGLE_INPUT_FILE = {"all-planets.csv"};
     private static final String[] SPLIT_PLANETS_FILES = {"first-55820.csv", "last-55820.csv"};
+    private static final String[] DIRECTORY_WITH_FILES = {"lots-of-inputs"};
 
 
     public static void main(String[] args) throws RunnerException, IOException {
@@ -65,4 +67,10 @@ public class BenchmarkRunner {
     public void benchmarkFuturesWithReentrantLocks() throws Exception {
         ReentrantLockBasedPlanetAnalyzerApp.main(SPLIT_PLANETS_FILES);
     }
+
+    @Benchmark
+    public void benchmarkFuturesWithEightSemaphoresAndTwentyThreeFiles() throws Exception {
+        SemaphorePlanetAnalyzerApp.main(DIRECTORY_WITH_FILES);
+    }
+
 }

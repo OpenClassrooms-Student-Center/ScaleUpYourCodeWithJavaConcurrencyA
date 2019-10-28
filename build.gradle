@@ -57,6 +57,13 @@ task(runReentrantLocks, dependsOn: 'classes', type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     args = ["last-55820.csv", "first-55820.csv"]
 }
+
+task(runSemaphores, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.openclassrooms.concurrency.planetbrain.semaphores.app.SemaphorePlanetAnalyzerApp'
+    classpath = sourceSets.main.runtimeClasspath
+    args = ["lots-of-inputs"]
+}
+
 defaultTasks 'runSingleProcess'
 
 test {

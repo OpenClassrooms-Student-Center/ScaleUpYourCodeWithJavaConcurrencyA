@@ -21,7 +21,7 @@ public class ThreadBasedPlanetFileAnalyzer {
                 // Ignore comments in the CSV
                         filter(line -> !line.startsWith(KeplerCsvFields.COMMENT_CHARACTER)).
                 // Skip the header which is left after our comments
-                        skip(1).
+                        filter(line -> !line.contains("kepoi_name,kepler_name,koi_teq")).
                 // Separate the columns using a comma
                         map(line -> line.split(",")).
                         filter(row -> row.length >= 3).
