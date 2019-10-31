@@ -64,6 +64,12 @@ task(runSemaphores, dependsOn: 'classes', type: JavaExec) {
     args = ["lots-of-inputs"]
 }
 
+task(runCountdownLatches, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.openclassrooms.concurrency.planetbrain.countdownlatches.app.CountdownLatchPlanetAnalyzerApp'
+    classpath = sourceSets.main.runtimeClasspath
+    args = ["lots-of-inputs"]
+}
+
 defaultTasks 'runSingleProcess'
 
 test {

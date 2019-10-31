@@ -16,7 +16,7 @@ public class SemaphorePlanetAnalyzerApp {
     private static ThreadBasedPlanetFileAnalyzer fileAnalyzer = new ThreadBasedPlanetFileAnalyzer();
 
     // Create Semaphore of Size 8
-    static Semaphore semaphore = new Semaphore(8);
+    static Semaphore semaphore = new Semaphore(2);
 
     public static void main(String[] folders) throws IOException, ExecutionException, InterruptedException, URISyntaxException {
         Double average = getAveragesFromFolder(folders);
@@ -27,7 +27,7 @@ public class SemaphorePlanetAnalyzerApp {
     public static Double getAveragesFromFolder(String[] folders) throws IOException, ExecutionException, InterruptedException, URISyntaxException {
 
         //1. Create Executor Pool
-        ExecutorService executorService = Executors.newFixedThreadPool(20);
+        ExecutorService executorService = Executors.newFixedThreadPool(4);
 
         try {
             // 2. Create a container for our futures

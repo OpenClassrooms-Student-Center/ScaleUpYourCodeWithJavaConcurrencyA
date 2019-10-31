@@ -1,6 +1,7 @@
 package com.openclassrooms.concurrency.planetbrain;
 
 import com.openclassrooms.concurrency.planetbrain.atomic.app.AtomicBasedPlanetAnalyzerApp;
+import com.openclassrooms.concurrency.planetbrain.countdownlatches.app.CountdownLatchPlanetAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.futures.app.FutureBasedPlanetAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.multiprocess.app.PlanetTemperatureAnalyzer;
 import com.openclassrooms.concurrency.planetbrain.multiprocess.app.PlanetTemperatureAnalyzerParallel;
@@ -71,6 +72,11 @@ public class BenchmarkRunner {
     @Benchmark
     public void benchmarkFuturesWithEightSemaphoresAndTwentyThreeFiles() throws Exception {
         SemaphorePlanetAnalyzerApp.main(DIRECTORY_WITH_FILES);
+    }
+
+    @Benchmark
+    public void benchmarkFuturesWithCountdownLatchesAndTwentyThreeFiles() throws Exception {
+        CountdownLatchPlanetAnalyzerApp.main(DIRECTORY_WITH_FILES);
     }
 
 }
