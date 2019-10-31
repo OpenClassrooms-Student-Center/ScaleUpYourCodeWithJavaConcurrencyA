@@ -70,6 +70,12 @@ task(runCountdownLatches, dependsOn: 'classes', type: JavaExec) {
     args = ["lots-of-inputs"]
 }
 
+task(runCompletableFutures, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.openclassrooms.concurrency.planetbrain.completablefutures.app.CompletableFuturePlanetAnalyzerApp'
+    classpath = sourceSets.main.runtimeClasspath
+    args = ["lots-of-inputs"]
+}
+
 defaultTasks 'runSingleProcess'
 
 test {
