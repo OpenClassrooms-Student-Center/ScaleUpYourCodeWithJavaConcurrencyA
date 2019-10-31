@@ -70,12 +70,12 @@ public class BenchmarkRunner {
     }
 
     @Benchmark
-    public void benchmarkFuturesWithEightSemaphoresAndTwentyThreeFiles() throws Exception {
+    public void benchmarkFuturesWithEightSemaphores() throws Exception {
         SemaphorePlanetAnalyzerApp.main(DIRECTORY_WITH_FILES);
     }
 
     @Benchmark
-    public void benchmarkFuturesWithCountdownLatchesAndTwentyThreeFiles() throws Exception {
+    public void benchmarkFuturesWithCountdownLatches() throws Exception {
         CountdownLatchPlanetAnalyzerApp.main(DIRECTORY_WITH_FILES);
     }
 
