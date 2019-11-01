@@ -1,10 +1,12 @@
 package com.openclassrooms.concurrency.planetbrain.threads.service;
 
+import com.openclassrooms.concurrency.planetbrain.model.AveragingComponents;
 import com.openclassrooms.concurrency.planetbrain.model.KeplerCsvFields;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.stream.DoubleStream;
 
 public class ThreadBasedPlanetFileAnalyzer {
@@ -52,5 +54,25 @@ public class ThreadBasedPlanetFileAnalyzer {
     public Double countDoubleRows(Path path) throws IOException {
         DoubleStream temperaturesInFile = getDoublesFromFile(path);
         return (double) temperaturesInFile.count();
+    }
+
+    /**
+     * Returns an AveragingComponent with the sampleSize and Sum
+     * @param path
+     * @return AveragingComponent with the parts required to calculate the mean
+     * @throws IOException
+     */
+    public AveragingComponents averagingComponents(Path path) throws IOException {
+        DoubleStream temperaturesInFile = getDoublesFromFile(path);
+
+        //Double sampleSize = Double.valueOf(temperaturesInFile.count());
+        Optional<AveragingComponents> temperatureSum = temperaturesInFile.
+                mapToObj((temp) -> new AveragingComponents(1.0, temp)).
+                reduce((a, b)->
+                        new AveragingComponents(
+                                a.getSampleSize()+b.getSampleSize(),
+                                a.getSampleSum()+b.getSampleSum()));
+
+        return temperatureSum.get();
     }
 }
