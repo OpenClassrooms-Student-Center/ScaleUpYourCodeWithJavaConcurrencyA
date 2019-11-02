@@ -3,6 +3,7 @@ package com.openclassrooms.concurrency.planetbrain;
 import com.openclassrooms.concurrency.planetbrain.atomic.app.AtomicBasedPlanetAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.completablefutures.app.CompletableFuturePlanetAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.countdownlatches.app.CountdownLatchPlanetAnalyzerApp;
+import com.openclassrooms.concurrency.planetbrain.forkjoin.app.ForkJoinPlanetAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.futures.app.FutureBasedPlanetAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.multiprocess.app.PlanetTemperatureAnalyzer;
 import com.openclassrooms.concurrency.planetbrain.multiprocess.app.PlanetTemperatureAnalyzerParallel;
@@ -83,6 +84,11 @@ public class BenchmarkRunner {
     @Benchmark
     public void benchmarkCompletableFutures() throws Exception {
         CompletableFuturePlanetAnalyzerApp.main(DIRECTORY_WITH_FILES);
+    }
+
+    @Benchmark
+    public void benchmarkForkJoinRecursiveTasks()throws Exception {
+        ForkJoinPlanetAnalyzerApp.main(DIRECTORY_WITH_FILES);
     }
 
 }
