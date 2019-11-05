@@ -20,7 +20,7 @@ class ThreadBasedPlanetAnalyzerAppTest {
     public void itShouldCalculateAnAverageFromAKeplerFiles() throws URISyntaxException, InterruptedException, ExecutionException, URISyntaxException {
         Double result = ThreadBasedPlanetAnalyzerApp.getAverageOfTemperatureFiles(SPLIT_PLANETS_FILES);
 
-        Double expectedResult = 1149.1999820257033;
+        Double expectedResult = 1149.1980210477122;
         assertThat(result, is(equalTo(expectedResult)));
     }
 }
