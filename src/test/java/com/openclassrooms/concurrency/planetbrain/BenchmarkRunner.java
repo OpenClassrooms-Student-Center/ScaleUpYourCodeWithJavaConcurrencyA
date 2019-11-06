@@ -1,6 +1,7 @@
 package com.openclassrooms.concurrency.planetbrain;
 
 import com.openclassrooms.concurrency.planetbrain.atomic.app.AtomicBasedPlanetAnalyzerApp;
+import com.openclassrooms.concurrency.planetbrain.blockingqueues.app.BlockingQueuePlanetTemperatureApp;
 import com.openclassrooms.concurrency.planetbrain.completablefutures.app.CompletableFuturePlanetAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.countdownlatches.app.CountdownLatchPlanetAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.forkjoin.app.ForkJoinPlanetAnalyzerApp;
@@ -22,14 +23,14 @@ import java.util.concurrent.TimeUnit;
 
 @Measurement(time=1500, timeUnit = TimeUnit.MILLISECONDS)
 @Warmup(time = 1500, timeUnit = TimeUnit.MILLISECONDS)
-@Fork(2)
+@Fork(1)
 public class BenchmarkRunner {
 
     // Benchmarking fixtures
     private static final String[] SINGLE_INPUT_FILE = {"all-planets.csv"};
     private static final String[] SPLIT_PLANETS_FILES = {"first-55820.csv", "last-55820.csv"};
     private static final String[] DIRECTORY_WITH_FILES = {"lots-of-inputs"};
-
+    private static final String[] DIRECTORY_WITH_MANY_MORE_FILES = {"even-more-inputs"};
 
     public static void main(String[] args) throws RunnerException, IOException {
         // delegate to JMH's Main class
@@ -87,8 +88,12 @@ public class BenchmarkRunner {
     }
 
     @Benchmark
-    public void benchmarkForkJoinRecursiveTasks()throws Exception {
+    public void benchmarkForkJoinRecursiveTasks() throws Exception {
         ForkJoinPlanetAnalyzerApp.main(DIRECTORY_WITH_FILES);
     }
 
+    @Benchmark
+    public void benchmarkBlockingQueue() throws Exception {
+        BlockingQueuePlanetTemperatureApp.main(DIRECTORY_WITH_MANY_MORE_FILES);
+    }
 }

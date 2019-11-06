@@ -81,6 +81,12 @@ task(runForkJoinTask, dependsOn: 'classes', type: JavaExec) {
     args = ["lots-of-inputs"]
 }
 
+task(runBlockingQueue, dependsOn: 'classes', type: JavaExec) {
+    main = 'com/openclassrooms/concurrency/planetbrain/blockingqueues/app/BlockingQueuePlanetTemperatureApp'
+    classpath = sourceSets.main.runtimeClasspath
+    args = ["even-more-inputs"]
+}
+
 defaultTasks 'runSingleProcess'
 
 test {
