@@ -3,6 +3,7 @@ package com.openclassrooms.concurrency.planetbrain;
 import com.openclassrooms.concurrency.planetbrain.atomic.app.AtomicBasedPlanetAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.blockingqueues.app.BlockingQueuePlanetTemperatureApp;
 import com.openclassrooms.concurrency.planetbrain.completablefutures.app.CompletableFuturePlanetAnalyzerApp;
+import com.openclassrooms.concurrency.planetbrain.concurrenthashmap.app.ThreadSafeMapAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.countdownlatches.app.CountdownLatchPlanetAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.forkjoin.app.ForkJoinPlanetAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.futures.app.FutureBasedPlanetAnalyzerApp;
@@ -19,6 +20,9 @@ import org.openjdk.jmh.annotations.Warmup;
 import org.openjdk.jmh.runner.RunnerException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Measurement(time=1500, timeUnit = TimeUnit.MILLISECONDS)
@@ -92,8 +96,24 @@ public class BenchmarkRunner {
         ForkJoinPlanetAnalyzerApp.main(DIRECTORY_WITH_FILES);
     }
 
+
     @Benchmark
     public void benchmarkBlockingQueue() throws Exception {
         BlockingQueuePlanetTemperatureApp.main(DIRECTORY_WITH_MANY_MORE_FILES);
     }
+
+    @Benchmark
+    public void benchmarkFuturesAndConcurrentHashMap() throws Exception {
+        List<String> args = new ArrayList<String>(Arrays.asList(DIRECTORY_WITH_MANY_MORE_FILES));
+        args.add("CONCURRENT_HASHMAP");
+        ThreadSafeMapAnalyzerApp.main(args.toArray(new String[]{}));
+    }
+
+    @Benchmark
+    public void benchmarkFuturesAndSynchronizedMap() throws Exception {
+        List<String> args = new ArrayList<String>(Arrays.asList(DIRECTORY_WITH_MANY_MORE_FILES));
+        args.add("SYNCHRONIZED_HASHMAP");
+        ThreadSafeMapAnalyzerApp.main(args.toArray(new String[]{}));
+    }
+
 }

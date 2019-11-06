@@ -87,6 +87,13 @@ task(runBlockingQueue, dependsOn: 'classes', type: JavaExec) {
     args = ["even-more-inputs"]
 }
 
+task(runHashMaps, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.openclassrooms.concurrency.planetbrain.concurrenthashmap.app.ThreadSafeMapAnalyzerApp'
+    classpath = sourceSets.main.runtimeClasspath
+    args = ["even-more-inputs", "CONCURRENT_HASHMAP"]
+}
+
+
 defaultTasks 'runSingleProcess'
 
 test {
