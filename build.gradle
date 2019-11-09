@@ -93,6 +93,13 @@ task(runHashMaps, dependsOn: 'classes', type: JavaExec) {
     args = ["even-more-inputs", "CONCURRENT_HASHMAP"]
 }
 
+task(runCoWArrayList, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.openclassrooms.concurrency.planetbrain.copyonwritearraylist.app.CoWArrayListAnalyzerApp'
+    classpath = sourceSets.main.runtimeClasspath
+    args = ["even-more-inputs", "CONCURRENT_HASHMAP"]
+}
+
+
 
 defaultTasks 'runSingleProcess'
 

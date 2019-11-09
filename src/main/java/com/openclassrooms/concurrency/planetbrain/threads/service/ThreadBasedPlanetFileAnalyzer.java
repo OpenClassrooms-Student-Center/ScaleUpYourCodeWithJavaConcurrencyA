@@ -11,7 +11,6 @@ import java.util.stream.DoubleStream;
 
 public class ThreadBasedPlanetFileAnalyzer {
 
-
     /**
      * Returns a DoubleStream of temperature values
      * @param path to CSV file with Kepler data

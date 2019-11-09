@@ -4,6 +4,7 @@ import com.openclassrooms.concurrency.planetbrain.atomic.app.AtomicBasedPlanetAn
 import com.openclassrooms.concurrency.planetbrain.blockingqueues.app.BlockingQueuePlanetTemperatureApp;
 import com.openclassrooms.concurrency.planetbrain.completablefutures.app.CompletableFuturePlanetAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.concurrenthashmap.app.ThreadSafeMapAnalyzerApp;
+import com.openclassrooms.concurrency.planetbrain.copyonwritearraylist.app.CoWArrayListAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.countdownlatches.app.CountdownLatchPlanetAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.forkjoin.app.ForkJoinPlanetAnalyzerApp;
 import com.openclassrooms.concurrency.planetbrain.futures.app.FutureBasedPlanetAnalyzerApp;
@@ -25,8 +26,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-@Measurement(time=1500, timeUnit = TimeUnit.MILLISECONDS)
-@Warmup(time = 1500, timeUnit = TimeUnit.MILLISECONDS)
+@Measurement(time=1000, timeUnit = TimeUnit.MILLISECONDS)
+@Warmup(time = 1000, timeUnit = TimeUnit.MILLISECONDS)
 @Fork(1)
 public class BenchmarkRunner {
 
@@ -115,5 +116,11 @@ public class BenchmarkRunner {
         args.add("SYNCHRONIZED_HASHMAP");
         ThreadSafeMapAnalyzerApp.main(args.toArray(new String[]{}));
     }
+
+    @Benchmark
+    public void benchmarkCoWArrayList() throws Exception {
+        CoWArrayListAnalyzerApp.main(DIRECTORY_WITH_MANY_MORE_FILES);
+    }
+
 
 }
