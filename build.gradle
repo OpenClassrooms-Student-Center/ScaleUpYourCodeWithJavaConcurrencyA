@@ -99,7 +99,11 @@ task(runCoWArrayList, dependsOn: 'classes', type: JavaExec) {
     args = ["even-more-inputs", "CONCURRENT_HASHMAP"]
 }
 
-
+task(runRxJava, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.openclassrooms.concurrency.planetbrain.reactivejava.app.ReactivePlanetAveragingApp'
+    classpath = sourceSets.main.runtimeClasspath
+    args = ["all-planets.csv"]
+}
 
 defaultTasks 'runSingleProcess'
 
@@ -107,6 +111,8 @@ test {
     useJUnitPlatform()
 }
 dependencies {
+    implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.0.1'
+    compile group: 'org.reactivestreams', name: 'reactive-streams', version: '1.0.0'
     testAnnotationProcessor 'org.openjdk.jmh:jmh-generator-annprocess:1.21'
     testImplementation 'org.openjdk.jmh:jmh-core:1.21'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.1'

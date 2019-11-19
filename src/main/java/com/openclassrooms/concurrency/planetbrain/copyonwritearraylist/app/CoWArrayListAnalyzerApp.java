@@ -30,10 +30,10 @@ public class CoWArrayListAnalyzerApp {
         List<CompletableFuture<Void>> completableFutures = new ArrayList<>();
 
         // 2. Get files
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        URL folderResource = loader.getResource(folders[0]);
-        List<Path> files = Files.walk(Paths.get(folderResource.toURI()))
-                .filter(Files::isRegularFile).collect(Collectors.toList());
+            ClassLoader loader = Thread.currentThread().getContextClassLoader();
+            URL folderResource = loader.getResource(folders[0]);
+            List<Path> files = Files.walk(Paths.get(folderResource.toURI()))
+                    .filter(Files::isRegularFile).collect(Collectors.toList());
 
         // 3. Create Countdown latch
         CountDownLatch latch = new CountDownLatch(files.size());
