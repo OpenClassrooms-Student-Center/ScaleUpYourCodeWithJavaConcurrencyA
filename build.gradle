@@ -102,7 +102,7 @@ task(runCoWArrayList, dependsOn: 'classes', type: JavaExec) {
 task(runRxJava, dependsOn: 'classes', type: JavaExec) {
     main = 'com.openclassrooms.concurrency.planetbrain.reactivejava.app.ReactivePlanetAveragingApp'
     classpath = sourceSets.main.runtimeClasspath
-    args = ["all-planets.csv"]
+    args = ["quiz-planets.csv"]
 }
 
 defaultTasks 'runSingleProcess'
